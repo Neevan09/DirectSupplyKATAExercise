@@ -17,7 +17,7 @@ function App() {
   return (
     <Provider store={store}>
       <Router>
-        {/* <Navbar /> */}
+        <Navbar />
         <Switch>
           <Route path="/" exact component={HomeContainer} />
         </Switch>

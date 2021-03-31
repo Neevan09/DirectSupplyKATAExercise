@@ -2,13 +2,11 @@ import React, { useEffect } from "react";
 
 const PageComponent = (props) => {
   return (
-    <div> 
-      <div class="ui main text container segment">
-        <div class="ui huge header">
+      <div className="ui main text container segment" style={{top: '50px'}}>
+        <div className="ui huge header">
           <h1>PET STORE</h1>
         </div>        
       </div>
-    </div>
   );
 };
 
