@@ -12,13 +12,12 @@ import history from "./utils/history";
 const initialState = {};
 const store = configureStore(initialState, history);
 
-import './App.css';
 
 function App() {
   return (
     <Provider store={store}>
       <Router>
-        <Navbar />
+        {/* <Navbar /> */}
         <Switch>
           <Route path="/" exact component={HomeContainer} />
         </Switch>
