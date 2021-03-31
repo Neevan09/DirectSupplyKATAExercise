@@ -3,10 +3,11 @@ import Navbar from "./components/Common/Navbar";
 import "./App.css";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import HomeContainer from "./pages/Home/containers/HomeContainer"; 
+import NewPage from "./pages/New/containers/NewContainer"; 
 
 import configureStore from "./configureStore";
 import history from "./utils/history";
+import HomePage from "./pages/Home/containers/HomeContainer";
 
 // Create redux store with history
 const initialState = {};
@@ -19,7 +20,8 @@ function App() {
       <Router>
         <Navbar />
         <Switch>
-          <Route path="/" exact component={HomeContainer} />
+          <Route path="/" exact component={HomePage} />
+          <Route path="/pets/new" exact component={NewPage} />          
         </Switch>
       </Router>
     </Provider>
