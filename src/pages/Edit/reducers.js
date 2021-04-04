@@ -2,7 +2,7 @@ import {
   POST_PETS_ERROR_RECEIVED,
   POST_PETS_RESPONSE_RECEIVED,
   PUT_PETS_RESPONSE_RECEIVED,
-  PUT_PETS_ERROR_RECEIVED,
+  PUT_PETS_ERROR_RECEIVED
 } from "./constants";
 import {
   API_FETCH,
@@ -25,15 +25,13 @@ const petInitialState = {
 };
 
 export const pets = (state = petInitialState, action) => {
-  console.log("Pets ===new==reducer: ", action);
+  console.log("Pets =======reducer: ", action);
   switch (action.type) {
     case POST_PETS_RESPONSE_RECEIVED: {
       return {
         ...state,
         httpStatus: action.response.httpStatus,
-        pets: [
-          { name: action.response.name, photoUrl: action.response.photoUrls },
-        ],
+        pets: [{ name: action.response.name, photoUrl: action.response.photoUrls }],
       };
     }
     case POST_PETS_ERROR_RECEIVED: {
@@ -42,27 +40,22 @@ export const pets = (state = petInitialState, action) => {
     case PUT_PETS_RESPONSE_RECEIVED: {
       return {
         ...state,
-        putPetsSuccess: true,
         httpStatus: action.response.httpStatus,
-        pets: [
-          { name: action.response.name, photoUrl: action.response.photoUrls },
-        ],
+        putPetsSuccess: true,
+        pets: [{ name: action.response.name, photoUrl: action.response.photoUrls }],
       };
     }
     case PUT_PETS_ERROR_RECEIVED: {
       return { ...state, ...action.response };
     }
-    case "RESET_PETS_DEFAULT": {
-      console.log("statae-====reset", state);
-      return { ...state, httpStatus: "", putPetsSuccess: false };
+    case 'RESET_PETS_DEFAULT': {
+      return { ...state, httpStatus: '', putPetsSuccess: false };
     }
-    case "PET_DETAILS_PERSISTED": {
-      console.log("PET_DETAILS_PERSISTED======state", state);
-      console.log("PET_DETAILS_PERSISTED======action.payload", action.payload);
-      return {
+    case 'PET_DETAILS_PERSISTED':{
+      return{
         ...state,
-        pets: action.payload.pets,
-      };
+        ...action.payload
+      }
     }
     default:
       return state;

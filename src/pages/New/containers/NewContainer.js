@@ -7,27 +7,27 @@ import {injectSaga, injectReducer} from 'redux-injectors';
 
 // import { asyncCallStatus, home, company } from "../reducer";
 import PageComponent from '../../../components/New/PageComponent'
-import * as homeSelectors from '../selectors';
+import * as newSelectors from '../selectors';
+import { apiCallStatus, pets } from "../reducers";
 
 const mapStateToProps = (state) => {
-//   const userDetails = homeSelectors.getUserDetails(state);
+  const petsDetails = newSelectors.petsDetails(state);
 //   const asyncCallStatusObj = state.toJS() ? state.toJS().asyncCallStatus : null;
-//   const routerDetails = homeSelectors.routerDetails(state);
+  const routerDetails = newSelectors.routerDetails(state);
 
   return {
-    // userDetails,
-    // routerDetails,
+    petsDetails,
+    routerDetails,
     // ...asyncCallStatusObj,
   };
 };
 
-// const withSaga = injectSaga({ key: 'home', saga });
+const withSaga = injectSaga({ key: 'new', saga });
 
-// const withReducer = compose(
-// //   injectReducer({ key: "asyncCallStatus", reducer: asyncCallStatus }),
-// //   injectReducer({ key: 'UserInfo', reducer: home }),
-// //   injectReducer({ key: 'CompanyInfo', reducer: company }),
-// );
+const withReducer = compose(
+   injectReducer({ key: "pets", reducer: pets  }),
+   injectReducer({ key: "apiCallStatus", reducer: apiCallStatus })
+);
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({ ...homeActions }, dispatch);
@@ -35,8 +35,7 @@ function mapDispatchToProps(dispatch) {
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-// const HomePage = withRouter(compose(withReducer, withSaga, withConnect)(PageComponent));
-const NewPage = withRouter(compose(withConnect)(PageComponent));
+const NewPage = withRouter(compose(withReducer, withSaga, withConnect)(PageComponent)); 
 
 
 export default NewPage;

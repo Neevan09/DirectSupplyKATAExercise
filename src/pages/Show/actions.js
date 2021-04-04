@@ -9,9 +9,10 @@ export const loadPostPets = (request) => ({
 
 export const postPets = (request) => {
 let requestPayload = request;
-  return HttpService.post('/v2/pet', requestPayload);
+  return HttpService.put('/v2/pet', requestPayload);
 };
 
-export const resetPets = () => ({
-  type: 'RESET_PETS_DEFAULT'
+export const setPetData = state => ({
+    type: 'PET_DETAILS_PERSISTED',
+    payload: state
 })

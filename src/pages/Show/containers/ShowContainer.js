@@ -6,7 +6,7 @@ import saga from "../sagas";
 import {injectSaga, injectReducer} from 'redux-injectors';
 
 // import { asyncCallStatus, home, company } from "../reducer";
-import PageComponent from '../../../components/Home/PageComponent'
+import PageComponent from '../../../components/Show/PageComponent'
 import * as homeSelectors from '../../New/selectors';
 import { pets } from "../../New/reducers";
 
@@ -34,8 +34,8 @@ function mapDispatchToProps(dispatch) {
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-// const HomePage = withRouter(compose(withReducer, withSaga, withConnect)(PageComponent));
-const HomePage = withRouter(compose(withConnect, withReducer)(PageComponent));
+// const ShowPage = withRouter(compose(withReducer, withSaga, withConnect)(PageComponent));
+const ShowPage = withRouter(compose(withConnect, withReducer)(PageComponent));
 
 
-export default HomePage;
+export default ShowPage;
