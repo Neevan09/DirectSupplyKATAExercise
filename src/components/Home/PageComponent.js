@@ -1,16 +1,17 @@
 import React, { useEffect } from "react";
+import { SHOW_URL } from "../../services/UrlMapperService";
 import { retrieveData } from "../../utils/pageRefresh";
 
 const PageComponent = (props) => {
-  console.log("props==============home: ", props);
+  console.log("Props==============HOME: ", props);
 
   useEffect(() => {
-    // console.log("Pets Array=========================", props.petsDetails.pets.pets.length);
     const retrieveApplicationData = retrieveData("petsDetails");
     if (retrieveApplicationData) {
       props.setPetData(retrieveApplicationData);
     }
   }, []);
+
   return (
     <div className="ui main text container segment" style={{ top: "50px" }}>
       <div className="ui huge header">
@@ -20,8 +21,7 @@ const PageComponent = (props) => {
             {props.petsDetails.pets !== undefined &&
               props.petsDetails.pets.pets !== undefined &&
               props.petsDetails.pets.pets.map((item) => {
-                return (
-                  // {console.log("Pets Array=========================22", item.name)}
+                return ( 
                   <div className="item">
                     <div className="image">
                       <img
@@ -33,9 +33,9 @@ const PageComponent = (props) => {
                       ></img>
                     </div>
                     <div className="content">
-                      <a className="header" href="/pets/show">
-                        Test Name:
-                        {item.name}
+                      <a className="header" href={SHOW_URL}>
+                        Name of the PETs
+                         <h3>{item.name}</h3> 
                       </a>
                       <div className="description">
                         <p>{new Date().toDateString()}</p>
@@ -43,7 +43,7 @@ const PageComponent = (props) => {
                       <div className="extra">
                         <a
                           className="ui floated basic violet button"
-                          href="/pets/show"
+                          href={SHOW_URL}
                         >
                           <i className="right chevron icon"></i>
                           Read more

@@ -10,6 +10,7 @@ import history from "./utils/history";
 import HomePage from "./pages/Home/containers/HomeContainer";
 import ShowPage from "./pages/Show/containers/ShowContainer";
 import EditPage from "./pages/Edit/containers/EditContainer";
+import { EDIT_URL, HOME_URL, NEW_URL, SHOW_URL } from "./services/UrlMapperService";
 
 // Create redux store with history
 const initialState = {};
@@ -22,10 +23,10 @@ function App() {
       <Router>
         <Navbar />
         <Switch>
-          <Route path="/" exact component={HomePage} />
-          <Route path="/pets/new" exact component={NewPage} />          
-          <Route path="/pets/show" exact component={ShowPage} />          
-          <Route path="/pets/edit" exact component={EditPage} />          
+          <Route path={HOME_URL} exact component={HomePage} />
+          <Route path={NEW_URL} exact component={NewPage} />          
+          <Route path={SHOW_URL} exact component={ShowPage} />          
+          <Route path={EDIT_URL} exact component={EditPage} />          
         </Switch>
       </Router>
     </Provider>

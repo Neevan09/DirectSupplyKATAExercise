@@ -1,4 +1,5 @@
 import React from "react";
+import { HOME_URL, NEW_URL } from "../../services/UrlMapperService";
 
 const Navbar = () => {
   return (
@@ -7,10 +8,10 @@ const Navbar = () => {
           <div className="header item">
             <i className="code icon shopping cart"></i>PETs
           </div>
-          <a href="/" className="item">
+          <a href={HOME_URL} className="item">
             Home
           </a>
-          <a href="/pets/new" className="item">
+          <a href={NEW_URL} className="item">
             New
           </a>
         </div>
