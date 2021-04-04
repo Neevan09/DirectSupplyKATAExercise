@@ -1,6 +1,6 @@
 # DirectSupplyKATAExercise
 
-A web page that lets a user interact with the pet store using React.
+: A responsive webpage developed using reactJs that lets user interact to create, read, update, and delete the pets using the pet store swagger API.
 
 # Getting Started with Create React App
 
