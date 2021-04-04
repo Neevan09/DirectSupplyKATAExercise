@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
-import { EDIT_URL, SHOW_URL } from "../../services/UrlMapperService";
-import { retrieveData } from "../../utils/pageRefresh";
+import { EDIT_URL, HOME_URL, SHOW_URL } from "../../services/UrlMapperService";
+import { clearData, retrieveData } from "../../utils/pageRefresh";
 
 const PageComponent = (props) => {
   console.log("Props==============SHOW: ", props);
+  const { pets } = props.petsDetails;
 
   useEffect(() => {
     const retrieveApplicationData = retrieveData("petsDetails");
@@ -11,6 +12,20 @@ const PageComponent = (props) => {
       props.setPetData(retrieveApplicationData);
     }
   }, []);
+
+  const handleDelete = (e) => {
+    console.log("Delete the Pets");
+    e.preventDefault();
+    props.loadDeletePets(pets.id);
+  };
+
+  useEffect(() => {
+    if (pets && pets.code === 200) {
+      clearData('petsDetails');
+      props.history.push(HOME_URL);
+    }
+  }, [pets]);
+
   return (
     <>
       <div className="ui main text container segment" style={{ top: "50px" }}>
@@ -22,7 +37,7 @@ const PageComponent = (props) => {
               return (
                 <>
                   <div className="ui top attached">
-                    <div class="item">
+                    <div className="item">
                       <div className="image">
                         <img
                           className="ui centered rounded image"
@@ -38,13 +53,18 @@ const PageComponent = (props) => {
                       </div>
 
                       <div>
-                        <a class="ui blue basic button" href={EDIT_URL}>
+                        <a className="ui blue basic button" href={EDIT_URL}>
                           Edit Blog
                         </a>
                       </div>
 
                       <form id="delete" method="POST">
-                        <button class="ui red basic button">Delete Blog</button>
+                        <button
+                          className="ui red basic button"
+                          onClick={handleDelete}
+                        >
+                          Delete Blog
+                        </button>
                       </form>
                     </div>
                   </div>

@@ -13,9 +13,19 @@ export function retrieveData (key){
 export function storeData(key,data){
     try{
         let storedData = sessionStorage.setItem(key, JSON.stringify(data));
-        console.log("storedData==================",storedData);
         return storedData;
     }catch(error){
         console.log("Failed to store data: ", error);        
+    }
+}
+
+
+export function clearData(key){
+    try{
+        let clearedData = sessionStorage.removeItem(key);
+        console.log("Cleared data===============", clearedData)
+        return clearedData;
+    }catch(error){
+        console.log("Failed to store data: ", error);      
     }
 }

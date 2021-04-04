@@ -9,6 +9,9 @@ const PageComponent = (props) => {
     const retrieveApplicationData = retrieveData("petsDetails");
     if (retrieveApplicationData) {
       props.setPetData(retrieveApplicationData);
+    } else {
+      if (retrieveApplicationData && retrieveApplicationData.id)
+        props.loadGetPets(retrieveApplicationData.id);
     }
   }, []);
 
@@ -19,9 +22,15 @@ const PageComponent = (props) => {
         <div className="ui top segment attached">
           <div className="ui divided items">
             {props.petsDetails.pets !== undefined &&
+              props.petsDetails.pets.code === 200 && (
+                <>
+                  PET ID: {props.petsDetails.pets.message} Deleted Succesfully!!
+                </>
+              )}
+            {props.petsDetails.pets !== undefined &&
               props.petsDetails.pets.pets !== undefined &&
               props.petsDetails.pets.pets.map((item) => {
-                return ( 
+                return (
                   <div className="item">
                     <div className="image">
                       <img
@@ -35,7 +44,7 @@ const PageComponent = (props) => {
                     <div className="content">
                       <a className="header" href={SHOW_URL}>
                         Name of the PETs
-                         <h3>{item.name}</h3> 
+                        <h3>{item.name}</h3>
                       </a>
                       <div className="description">
                         <p>{new Date().toDateString()}</p>

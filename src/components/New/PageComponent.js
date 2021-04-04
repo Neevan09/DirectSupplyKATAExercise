@@ -2,8 +2,12 @@ import React, { useEffect, useState } from "react";
 import { HOME_URL } from "../../services/UrlMapperService";
 import { storeData } from "../../utils/pageRefresh";
 
+
 const PageComponent = (props) => {
   console.log("Props==============NEW: ", props);
+  
+  const randomId = (max) => Math.floor(Math.random() * max);
+  console.log("uuid==============00000: ",randomId(500));
 
   const [name, setName] = useState('');
   const [image, setImage] = useState("");
@@ -12,7 +16,7 @@ const PageComponent = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     let requestPayload = {
-      id: 0,
+      id: randomId(5000),
       category: {
         id: 0,
         name: "string",

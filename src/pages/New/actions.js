@@ -12,6 +12,6 @@ let requestPayload = request;
   return HttpService.post('/v2/pet', requestPayload);
 };
 
-export const resetPets = () => ({
-  type: 'RESET_PETS_DEFAULT'
-})
+// export const resetPets = () => ({
+//   type: 'RESET_PETS_DEFAULT'
+// })
