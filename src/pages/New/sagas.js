@@ -10,9 +10,10 @@ console.log("action===============",action);
     const name = apiResponse && apiResponse.data.name;
     const photoUrls = apiResponse && apiResponse.data.photoUrls[0];
     const httpStatus = apiResponse && apiResponse.status;
-    console.log("apiResponse===============",apiResponse);
+    const id = apiResponse && apiResponse.data.id;
+ 
    
-    const data = { name, photoUrls,httpStatus };
+    const data = { name, photoUrls,httpStatus,id };
 
     data
       ? yield put({
